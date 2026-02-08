@@ -1,0 +1,89 @@
+# לייק הום — Generative Engine Optimization Map
+
+> A נדל"ן והשכרה לטווח קצר business.
+
+---
+
+## Pages
+
+### Home
+https://-699ea92e.zappy5.app
+
+### Properties
+https://-699ea92e.zappy5.app/properties
+
+### Property Detail
+https://-699ea92e.zappy5.app/property/example
+
+### Contact
+https://-699ea92e.zappy5.app/contact
+
+### Products
+https://-699ea92e.zappy5.app/products
+המוצרים שלנו - לייק הום
+
+### Cart
+https://-699ea92e.zappy5.app/cart
+עגלת הקניות שלך
+
+### Checkout
+https://-699ea92e.zappy5.app/checkout
+תשלום
+
+### Login
+https://-699ea92e.zappy5.app/login
+התחברות לקוחות
+
+### Account
+https://-699ea92e.zappy5.app/account
+החשבון שלי
+
+### Order Success
+https://-699ea92e.zappy5.app/order-success
+תודה על ההזמנה
+
+### Product Detail
+https://-699ea92e.zappy5.app/product/:slug
+פרטי המוצר - לייק הום
+
+### Category
+https://-699ea92e.zappy5.app/category/:slug
+מוצרים - לייק הום
+
+## Legal & Policy
+
+### Privacy Policy
+https://-699ea92e.zappy5.app/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://-699ea92e.zappy5.app/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://-699ea92e.zappy5.app/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+# Business Context (for LLM understanding)
+
+## About לייק הום
+לייק הום is a business in the נדל"ן והשכרה לטווח קצר industry.
+
+## Target Audience
+- מקצוענים עירוניים
+- סטודנטים בינלאומיים
+- גולים טכנולוגיים
+- תיירים לטווח קצר
+- מבקרים עסקיים
+
+## Industry
+נדל"ן והשכרה לטווח קצר
+
+---
+
+# Additional Resources
+
+- **Sitemap**: https://-699ea92e.zappy5.app/sitemap.xml
+- **Robots.txt**: https://-699ea92e.zappy5.app/robots.txt

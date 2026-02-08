@@ -1,0 +1,895 @@
+<!DOCTYPE html><html lang="he" dir="rtl" data-zappy-site-type="ecommerce"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>נכסים - לייק הום</title>
+  <meta name="description" content="Properties - לייק הום provides professional נדל" ן="" והשכרה="" לטווח="" קצר="" services.="" specializing="" in="" לייק="" הום."="">
+  <meta name="keywords" content="לייק הום, דירות מרוהטות להשכרה לטווח קצר, דירות נופש מרוהטות לטווח בינוני, לייק הום דירות מרוהטות">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:title" content="נכסים - לייק הום">
+  <meta property="og:description" content="Properties - לייק הום provides professional נדל" ן="" והשכרה="" לטווח="" קצר="" services.="" specializing="" in="" לייק="" הום."="">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="נכסים - לייק הום">
+  <meta name="twitter:description" content="Properties - לייק הום provides professional נדל" ן="" והשכרה="" לטווח="" קצר="" services.="" specializing="" in="" לייק="" הום."="">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
+    <!-- Mickidum Accessibility Toolbar -->
+    <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
+<!-- Zappy Analytics -->
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration
+  var config = {
+    websiteId: '699ea92e-4528-456d-9030-e61037728df2',
+    apiUrl: 'https://api.zappy5.com/api/analytics/track',
+    sessionDuration: 30 * 60 * 1000, // 30 minutes
+    visitorDuration: 30 * 24 * 60 * 60 * 1000, // 30 days
+    trackPageViews: true,
+    trackClicks: true,
+    trackFormSubmissions: true
+  };
+  
+  // Generate or retrieve persistent visitor ID (30 days)
+  function getVisitorId() {
+    var visitorKey = 'zappy_visitor_' + config.websiteId;
+    var visitor = null;
+    
+    try {
+      visitor = localStorage.getItem(visitorKey);
+      if (visitor) {
+        var visitorData = JSON.parse(visitor);
+        var now = Date.now();
+        
+        // Check if visitor ID is still valid (30 days)
+        if (now - visitorData.created < config.visitorDuration) {
+          // Update last seen timestamp
+          visitorData.lastSeen = now;
+          localStorage.setItem(visitorKey, JSON.stringify(visitorData));
+          return visitorData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: LocalStorage not available');
+    }
+    
+    // Generate new visitor ID
+    var newVisitorId = 'zv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      localStorage.setItem(visitorKey, JSON.stringify({
+        id: newVisitorId,
+        created: Date.now(),
+        lastSeen: Date.now()
+      }));
+    } catch (e) {
+      // Continue without local storage
+    }
+    
+    return newVisitorId;
+  }
+  
+  // Generate or retrieve session ID (30 minutes)
+  function getSessionId() {
+    var sessionKey = 'zappy_session_' + config.websiteId;
+    var session = null;
+    
+    try {
+      session = sessionStorage.getItem(sessionKey);
+      if (session) {
+        var sessionData = JSON.parse(session);
+        var now = Date.now();
+        
+        // Check if session is still valid
+        if (now - sessionData.timestamp < config.sessionDuration) {
+          // Update timestamp
+          sessionData.timestamp = now;
+          sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+          return sessionData.id;
+        }
+      }
+    } catch (e) {
+      console.warn('Zappy Analytics: SessionStorage not available');
+    }
+    
+    // Generate new session ID
+    var newSessionId = 'zs_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({
+        id: newSessionId,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      // Continue without session storage
+    }
+    
+    return newSessionId;
+  }
+  
+  var visitorId = getVisitorId();
+  var sessionId = getSessionId();
+  
+  // Track an event
+  function trackEvent(eventType, data) {
+    data = data || {};
+    
+    var eventData = {
+      website_id: config.websiteId,
+      event_type: eventType,
+      page_path: window.location.pathname,
+      referrer: document.referrer || 'direct',
+      visitor_id: visitorId,
+      session_id: sessionId,
+      metadata: data
+    };
+    
+    // Use sendBeacon if available (better for page unload events)
+    if (navigator.sendBeacon) {
+      var blob = new Blob([JSON.stringify(eventData)], { type: 'application/json' });
+      navigator.sendBeacon(config.apiUrl, blob);
+    } else {
+      // Fallback to fetch
+      fetch(config.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData),
+        keepalive: true
+      }).catch(function(error) {
+        console.warn('Zappy Analytics: Failed to track event', error);
+      });
+    }
+  }
+  
+  // Track page view
+  if (config.trackPageViews) {
+    trackEvent('pageview', {
+      title: document.title,
+      url: window.location.href
+    });
+  }
+  
+  // Track clicks on important elements
+  if (config.trackClicks) {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      
+      // Track button clicks (counted as actions)
+      if (target.tagName === 'BUTTON' || target.closest('button')) {
+        var button = target.tagName === 'BUTTON' ? target : target.closest('button');
+        trackEvent('click', {
+          element: 'button',
+          text: button.textContent.trim().substring(0, 100),
+          id: button.id || null,
+          class: button.className || null
+        });
+      }
+      
+      // Track link clicks (navigation - not counted as actions)
+      else if (target.tagName === 'A' || target.closest('a')) {
+        var link = target.tagName === 'A' ? target : target.closest('a');
+        trackEvent('navigation', {
+          element: 'link',
+          text: link.textContent.trim().substring(0, 100),
+          href: link.href,
+          external: link.hostname !== window.location.hostname
+        });
+      }
+    }, true);
+  }
+  
+  // Track form submissions
+  if (config.trackFormSubmissions) {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      
+      trackEvent('form_submit', {
+        form_id: form.id || null,
+        form_name: form.name || null,
+        form_action: form.action || null,
+        form_method: form.method || 'GET'
+      });
+    }, true);
+  }
+  
+  // Track time on page (send on page unload)
+  var pageLoadTime = Date.now();
+  
+  window.addEventListener('beforeunload', function() {
+    var timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000); // in seconds
+    
+    trackEvent('page_unload', {
+      time_on_page: timeOnPage,
+      page_path: window.location.pathname
+    });
+  });
+  
+  // Expose tracking function globally for custom events
+  window.zappyAnalytics = {
+    track: trackEvent,
+    getVisitorId: function() { return visitorId; },
+    getSessionId: function() { return sessionId; }
+  };
+  
+})();
+</script>
+<!-- End Zappy Analytics -->
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: 44px !important; background: transparent !important; border: none !important; cursor: pointer !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-search-panel" id="mobile-search-panel">
+      <div class="search-wrapper">
+        <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
+        <button class="search-submit" id="mobile-search-submit" title="חיפוש">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button class="close-search" id="close-mobile-search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="search-results" id="mobile-search-results"></div>
+    </div>
+  
+<script>window.ZAPPY_WEBSITE_ID = "699ea92e-4528-456d-9030-e61037728df2";window.ZAPPY_API_BASE = (window.location.pathname.includes('/preview') ? "https://api.zappy5.com" : "https://api.zappy5.com");</script>
+  <nav class="navbar" dir="rtl">
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+    <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </svg>
+  </button>
+  
+  <button class="phone-header-btn" aria-label="Call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+    </svg>
+  </button>
+  
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="/" class="logo-link">
+        <img src="/assets/business-logo.webp" alt="לייק הום" class="logo" />
+      </a>
+    </div>
+    
+    <ul class="nav-menu" id="navMenu">
+
+    <li class="menu-item-has-children zappy-products-dropdown">
+      <a href="/products">
+        מוצרים
+        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"></path>
+        </svg>
+      </a>
+      <ul class="sub-menu" id="zappy-nav-category-links">
+        <li><a href="/products">כל המוצרים</a></li>
+        <!-- Categories will be loaded dynamically -->
+      </ul>
+    </li>
+  <li><a href="/properties">נכסים</a></li><li><a href="/property/example">דוגמת נכס</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
+    <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    </button>
+    <div class="nav-search-results" id="nav-search-results"></div>
+  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button></div>
+    
+    
+  </div>
+</nav>
+
+    <nav class="zappy-catalog-menu rtl" id="zappy-catalog-menu" dir="rtl">
+      <div class="catalog-menu-container">
+        <a href="/products" class="catalog-menu-item catalog-menu-all">כל המוצרים</a>
+        <div class="catalog-menu-categories" id="zappy-category-links">
+          <!-- Categories will be loaded dynamically -->
+        </div>
+      </div>
+    </nav>
+  
+  
+  <main>
+    <section class="properties-intro-section" data-layout-spec="Properties-intro">
+  <div class="properties-intro-container">
+    <div class="properties-intro-content">
+      <h1 class="properties-intro-heading">בתים זמינים לשהייה קצרה</h1>
+      <p class="properties-intro-paragraph">מבחר מדויק של דירות מרוהטות במלואן, עם לוגיסטיקה שקטה ותחושת בית אמיתית. כל נכס נבחר בקפידה כדי להעניק לכם שקט נפשי וביטחון מלא.</p>
+      <div class="properties-intro-features">
+        <span class="properties-intro-feature-item">שירותים ברורים</span>
+        <span class="properties-intro-feature-dot">•</span>
+        <span class="properties-intro-feature-item">תמונות אמיתיות</span>
+        <span class="properties-intro-feature-dot">•</span>
+        <span class="properties-intro-feature-item">תמיכה אישית</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="properties-listings-section" data-layout-spec="Properties-listings">
+  <div class="properties-listings-container">
+    <div class="properties-listings-header">
+      <h2>הנכסים שלנו</h2>
+      <p>גלו את מגוון הדירות המרוהטות שלנו להשכרה לטווח קצר ובינוני – כל אחת מעוצבת בקפידה כדי להעניק לכם תחושת בית אמיתית</p>
+    </div>
+
+    <div class="properties-listings-backplate"></div>
+
+    <div class="properties-listings-grid">
+      <!-- Property Card 1 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-1" data-context="Modern furnished apartment living room in Israel with warm lighting, comfortable sofa, coffee table, plants, and welcoming homey atmosphere for short-term rental" width="600" height="400" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF0083;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF008320;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grad)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial, sans-serif' font-size='18' fill='white' text-anchor='middle' dy='.3em' font-weight='500'%3E%D7%93%D7%99%D7%A8%D7%94%20%D7%9E%D7%A8%D7%95%D7%94%D7%98%D7%AA%20%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99%D7%AA%20%D7%91%D7%9C%D7%99%D7%99%D7%A7%20%D7%94%D7%95%D7%9D%3C/text%3E%3C/svg%3E" alt="דירה מרוהטת מודרנית בלייק הום">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירת פנטהאוז בתל אביב</h3>
+          <p class="property-description">מרפסת גג מרהיבה, עיצוב מודרני ונוף פתוח – מושלם למשפחות ואנשי עסקים</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 6 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 3 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> תל אביב מרכז</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 120 מ״ר</p>
+          </div>
+          <a href="/property/penthouse-tlv" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 2 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-2" data-context="Cozy bedroom in furnished apartment with soft bedding, warm wood tones, bedside lamps, and comfortable homey feel for vacation rental in Israel" width="600" height="400" src="/assets/site-properties-listings-image-2.webp" alt="חדר שינה נעים בדירה מרוהטת">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>סטודיו בוטיק בפלורנטין</h3>
+          <p class="property-description">אזור תוסס, עיצוב ייחודי ואווירה אורבנית – אידיאלי לזוגות צעירים</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 2 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> סטודיו</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> פלורנטין</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 45 מ״ר</p>
+          </div>
+          <a href="/property/studio-florentin" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 3 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-3" data-context="Spacious family apartment dining area with large table, modern kitchen view, bright natural light, and welcoming atmosphere for short-term rental" width="600" height="400" src="/assets/site-properties-listings-image-3.webp" alt="פינת אוכל במרחב משפחתי">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירת גן בהרצליה פיתוח</h3>
+          <p class="property-description">גינה פרטית, שקט ונוחות – מתאים במיוחד למשפחות עם ילדים</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 5 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> הרצליה פיתוח</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 95 מ״ר + גינה</p>
+          </div>
+          <a href="/property/garden-herzliya" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 4 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-4" data-context="Elegant apartment balcony with outdoor seating, city view, plants, and sunset lighting for luxury short-term rental in Israel" width="600" height="400" src="/assets/site-properties-listings-image-4.webp" alt="מרפסת מעוצבת עם נוף עירוני">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>לופט מעוצב ברמת אביב</h3>
+          <p class="property-description">תקרות גבוהות, חללים פתוחים ואור טבעי – חוויה ייחודית של מגורים</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 4 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> רמת אביב</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 110 מ״ר</p>
+          </div>
+          <a href="/property/loft-ramat-aviv" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 5 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-5" data-context="Modern apartment kitchen with white cabinets, marble countertops, stainless appliances, and bright clean design for vacation rental" width="600" height="400" src="/assets/site-properties-listings-image-5.webp" alt="מטבח מודרני מאובזר">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירה חדשה ברחוב רוטשילד</h3>
+          <p class="property-description">לב העיר, מיקום מרכזי ונגישות מושלמת – אידיאלי לאנשי עסקים</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 3 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> רוטשילד, ת״א</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 80 מ״ר</p>
+          </div>
+          <a href="/property/rothschild-apt" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 6 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-6" data-context="Comfortable living room with plush sofa, soft throw pillows, warm lighting, bookshelf, and inviting homey atmosphere for family rental" width="600" height="400" src="/assets/site-properties-listings-image-6.webp" alt="סלון נעים ומזמין">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דופלקס משפחתי בגבעתיים</h3>
+          <p class="property-description">מרחב נדיב, שכונה שקטה וקהילתית – מושלם לרילוקיישן משפחתי</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 6 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 4 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> גבעתיים</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 140 מ״ר</p>
+          </div>
+          <a href="/property/duplex-givatayim" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 7 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-7" data-context="Bright apartment workspace with desk, ergonomic chair, natural light, plants, and professional setup for business travelers" width="600" height="400" src="/assets/site-properties-listings-image-7.webp" alt="פינת עבודה מעוצבת">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירת יוקרה בנווה צדק</h3>
+          <p class="property-description">אזור היסטורי מקסים, עיצוב בוטיק ושירות אישי – חוויה בלתי נשכחת</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 4 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> נווה צדק</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 100 מ״ר</p>
+          </div>
+          <a href="/property/luxury-neve-tzedek" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 8 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-8" data-context="Stylish apartment bathroom with modern fixtures, clean tiles, soft towels, and spa-like atmosphere for vacation rental" width="600" height="400" src="/assets/site-properties-listings-image-8.webp" alt="חדר רחצה מעוצב">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירה מרווחת בבת ים</h3>
+          <p class="property-description">קרוב לים, מחירים נוחים ואווירה נינוחה – אופציה מצוינת למשפחות</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 5 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 3 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> בת ים</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 105 מ״ר</p>
+          </div>
+          <a href="/property/spacious-bat-yam" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 9 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-9" data-context="Furnished apartment children's room with colorful decor, toys, comfortable bed, and safe family-friendly design for vacation rental" width="600" height="400" src="/assets/site-properties-listings-image-9.webp" alt="חדר ילדים צבעוני">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>סטודיו מודרני בדיזנגוף</h3>
+          <p class="property-description">לב העיר התוססת, נגישות מושלמת ואנרגיה צעירה – מושלם לזוגות</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 2 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> סטודיו</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> דיזנגוף, ת״א</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 40 מ״ר</p>
+          </div>
+          <a href="/property/studio-dizengoff" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 10 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-10" data-context="Apartment rooftop terrace with lounge furniture, string lights, plants, and evening ambiance for luxury short-term rental" width="600" height="400" src="/assets/site-properties-listings-image-10.webp" alt="מרפסת גג מעוצבת">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירה עם נוף בחולון</h3>
+          <p class="property-description">מרפסת פתוחה, נוף פנורמי ושכונה ירוקה – רוגע ונוחות במחיר הוגן</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 4 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> חולון</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 85 מ״ר</p>
+          </div>
+          <a href="/property/view-holon" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 11 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-11" data-context="Modern apartment entrance hallway with coat hooks, mirror, clean floors, and welcoming design for furnished rental" width="600" height="400" src="/assets/site-properties-listings-image-11.webp" alt="כניסה מסודרת לדירה">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירת קומת קרקע ברמת גן</h3>
+          <p class="property-description">נגישות מלאה, חצר קטנה ושכונה משפחתית – נוחות מקסימלית לכולם</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 4 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> רמת גן</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 90 מ״ר</p>
+          </div>
+          <a href="/property/ground-ramat-gan" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+
+      <!-- Property Card 12 -->
+      <article class="property-card card-listing-card">
+        <div class="property-card-image-wrapper">
+          <img data-placeholder="properties-listings-image-12" data-context="Cozy apartment reading nook with armchair, floor lamp, bookshelf, throw blanket, and warm homey atmosphere for vacation rental" width="600" height="400" src="/assets/site-properties-listings-image-12.webp" alt="פינת קריאה נעימה">
+        </div>
+        <div class="property-card-content card-listing-card-body">
+          <h3>דירה מעוצבת בשרונה</h3>
+          <p class="property-description">אזור מודרני ומרכזי, עיצוב עכשווי ואווירה צעירה – חיים בסטייל</p>
+          <div class="property-details">
+            <p class="property-detail-item"><i class="fas fa-users" data-element-type="icon" data-icon-type="fontawesome"></i> עד 3 אורחים</p>
+            <p class="property-detail-item"><i class="fas fa-bed" data-element-type="icon" data-icon-type="fontawesome"></i> 2 חדרי שינה</p>
+            <p class="property-detail-item"><i class="fas fa-map-marker-alt" data-element-type="icon" data-icon-type="fontawesome"></i> שרונה, ת״א</p>
+            <p class="property-detail-item"><i class="fas fa-ruler-combined" data-element-type="icon" data-icon-type="fontawesome"></i> 75 מ״ר</p>
+          </div>
+          <a href="/property/stylish-sarona" class="property-cta btn-primary">צפייה בפרטים</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="properties-process-section" data-layout-spec="Properties-process">
+  <div class="properties-process-container">
+    <div class="properties-process-content">
+      <h2 class="properties-process-title">שהייה צפויה ורגועה – צעד אחר צעד</h2>
+      <p class="properties-process-intro">בלייק הום אנחנו מבינים שהשהייה שלכם צריכה להיות פשוטה, נוחה ומותאמת אישית. מהרגע הראשון ועד לרגע האחרון, אנחנו כאן כדי להבטיח שתרגישו כמו בבית.</p>
+      
+      <div class="properties-process-steps">
+        <div class="properties-process-step">
+          <div class="properties-process-step-number">1</div>
+          <div class="properties-process-step-content">
+            <h3 class="properties-process-step-title">שתפו אותנו בצרכים שלכם</h3>
+            <p class="properties-process-step-text">משפחה, עסקים או רילוקיישן – ספרו לנו על הצרכים המיוחדים שלכם ואנחנו נתאים את הדירה המושלמת עבורכם.</p>
+          </div>
+        </div>
+        
+        <div class="properties-process-step">
+          <div class="properties-process-step-number">2</div>
+          <div class="properties-process-step-content">
+            <h3 class="properties-process-step-title">אנחנו מתאימים לכם בית</h3>
+            <p class="properties-process-step-text">על בסיס הצרכים שלכם, אנחנו בוחרים עבורכם דירה מרוהטת שמתאימה בדיוק למה שחיפשתם – נוחה, מאובזרת ובמיקום מושלם.</p>
+          </div>
+        </div>
+        
+        <div class="properties-process-step">
+          <div class="properties-process-step-number">3</div>
+          <div class="properties-process-step-content">
+            <h3 class="properties-process-step-title">הדרכה ברורה להגעה</h3>
+            <p class="properties-process-step-text">אנחנו נספק לכם הנחיות מפורטות ופשוטות להגעה, כולל פרטי כניסה, מידע על השכונה וכל מה שצריך כדי להתחיל בנוחות.</p>
+          </div>
+        </div>
+        
+        <div class="properties-process-step">
+          <div class="properties-process-step-number">4</div>
+          <div class="properties-process-step-content">
+            <h3 class="properties-process-step-title">תמיכה לאורך כל השהייה</h3>
+            <p class="properties-process-step-text">לאורך כל תקופת השהייה, אנחנו זמינים עבורכם – לכל שאלה, בקשה או צורך. השקט שלכם הוא העדיפות שלנו.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="properties-process-image-column">
+      <img data-placeholder="properties-process-image-1" data-context="Warm lifestyle photo of house keys resting on a smooth wooden table with soft natural window light creating gentle shadows, warm tones, cozy atmosphere, shallow depth of field, representing home comfort and welcoming arrival for short-term rental property" width="600" height="700" src="/assets/site-properties-process-image-1.webp" alt="מפתחות בית על שולחן עץ עם אור טבעי רך">
+    </div>
+  </div>
+  
+  <div class="properties-process-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 L0,35 Q200,45 400,38 T800,42 Q1000,38 1200,45 L1200,80 Z" fill="#F3EFE8"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="properties-faq-section" data-layout-spec="Properties-faq">
+  <div class="properties-faq-section__divider-top">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 2" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="1" x2="800" y2="1" stroke="var(--border-light)" stroke-width="1"></line>
+      <line x1="800" y1="1" x2="1200" y2="1" stroke="var(--border-light)" stroke-width="1" stroke-dasharray="4 4"></line>
+    </svg>
+  </div>
+  
+  <div class="properties-faq-section__container">
+    <div class="properties-faq-section__header">
+      <h2 class="properties-faq-section__title">שאלות נפוצות</h2>
+      <p class="properties-faq-section__subtitle">כאן תמצאו תשובות לשאלות הנפוצות ביותר על דירות לייק הום. אם לא מצאתם את התשובה שחיפשתם, נשמח לעזור אישית.</p>
+    </div>
+
+    <div class="properties-faq-section__accordion">
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">מה כולל ריהוט הדירות?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>כל דירות לייק הום מגיעות מרוהטות במלואן ומצוידות בכל הדרוש לשהייה נעימה: מיטות איכוטיות עם מצעים, סלון מאובזר, מטבח מלא עם כלי בישול וכלי אוכל, מכונת כביסה, מזגן בכל חדר, ואביזרי אמבטיה. אנחנו מקפידים שהדירות יהיו מוכנות לכניסה מיידית, כך שתרגישו כמו בבית מהרגע הראשון.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">האם יש אינטרנט וחיבור לשירותים?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>בהחלט! כל דירה כוללת אינטרנט אלחוטי מהיר (Wi-Fi) ללא תשלום נוסף. חשבונות החשמל, המים והארנונה כלולים במחיר השכירות החודשית, כך שלא תצטרכו לטפל בתשלומים נפרדים. אנחנו דואגים שכל השירותים יהיו זמינים ופעילים עם הכניסה לדירה.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">האם הדירות מתאימות למשפחות עם ילדים?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>כן, רוב הדירות שלנו מתאימות מאוד למשפחות. אנחנו מציעים דירות בגדלים שונים, כולל דירות עם מספר חדרי שינה, באזורים שקטים וידידותיים למשפחות. ניתן להוסיף ציוד לתינוקות לפי הצורך (מיטת תינוק, כיסא אוכל), ואנחנו תמיד שמחים לייעץ על הדירה המתאימה ביותר לצרכי המשפחה שלכם.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">איך מתבצע תהליך הכניסה לדירה?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>תהליך הכניסה פשוט ונוח: לאחר אישור ההזמנה, נשלח אליכם את כל הפרטים הדרושים – כתובת מדויקת, הוראות הגעה, וקוד כניסה לדירה. ניתן לתאם שעת כניסה גמישה לפי נוחיותכם. נציג של לייק הום זמין לכם בטלפון בכל שלב, ואם תרצו מפגש אישי בכניסה – נשמח לארגן זאת.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">מה הכללים לגבי שעות שקט ותקנון הבניין?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>אנחנו מקפידים על כללי שכנות טובה ושמירה על שקט בשעות הערב והלילה (בדרך כלל מ-22:00). כל דירה ממוקמת בבניין מגורים רגיל, ואנחנו מצפים מהדיירים לכבד את השכנים ולשמור על ניקיון ושקט. לפני הכניסה נמסור לכם את כללי הבית והבניין, כולל הוראות לגבי פינוי אשפה, שימוש במעלית ועוד.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">איזה סוג תמיכה ושירות אני מקבל במהלך השהייה?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>צוות לייק הום זמין עבורכם לאורך כל תקופת השכירות. אם יש בעיה טכנית, שאלה או בקשה מיוחדת – אנחנו כאן כדי לעזור. ניתן ליצור קשר בטלפון, בווטסאפ או במייל, ואנחנו מגיבים במהירות. אנחנו רוצים שתרגישו בטוחים ונתמכים, בדיוק כמו שמגיע לכם בבית שלכם.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">כמה פעמים מנקים את הדירה במהלך השכירות?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>הדירה מנוקה ומחוטאת ביסודיות לפני כל כניסה. במהלך השכירות, הניקיון השוטף הוא באחריות הדייר, בדיוק כמו בבית פרטי. עם זאת, בשכירות ארוכות (מעל חודש) ניתן לתאם שירותי ניקיון תקופתיים תמורת תשלום נוסף. אנחנו תמיד זמינים לסייע בתיאום ספקים ושירותים נוספים לפי הצורך.</p>
+        </div>
+      </div>
+
+      <div class="properties-faq-section__accordion-item">
+        <button class="properties-faq-section__accordion-question" aria-expanded="false">
+          <span class="properties-faq-section__question-text">האם אפשר לבטל הזמנה או לקצר את תקופת השכירות?</span>
+          <span class="properties-faq-section__accordion-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="properties-faq-section__accordion-answer">
+          <p>מדיניות הביטול משתנה בהתאם לסוג ההזמנה ומשך השכירות. בדרך כלל, ביטול מוקדם (עד מספר ימים לפני מועד הכניסה) מאפשר החזר חלקי או מלא. בשכירות לטווח ארוך, תקופת ההודעה המוקדמת מוסדרת בחוזה. אנחנו ממליצים לדבר איתנו ישירות כדי למצוא את הפתרון הטוב ביותר במקרה של שינוי תוכניות.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="properties-cta-section" data-layout-spec="Properties-cta">
+  <div class="properties-cta-section__divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="properties-cta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#F6F0E6;stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:#2A2420;stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0,100 L0,50 Q150,45 300,52 T600,48 Q750,52 900,45 T1200,50 L1200,100 Z" fill="url(#properties-cta-gradient)"></path>
+    </svg>
+  </div>
+  <div class="properties-cta-section__container">
+    <div class="properties-cta-section__panel">
+      <h2 class="properties-cta-section__heading">לא בטוחים איזה בית מתאים לכם? אנחנו כאן לעזור</h2>
+      <p class="properties-cta-section__text">שתפו אותנו בצרכים שלכם ובאזור המועדף עליכם, ואנחנו נמצא עבורכם את הבית המושלם</p>
+      <a href="/contact" class="properties-cta-section__btn">צרו קשר</a>
+      <p class="properties-cta-section__reassurance">מענה אישי תוך יום עסקים אחד</p>
+    </div>
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column footer-about">
+        <img src="/assets/business-logo.webp" alt="לייק הום" class="logo" />
+        <p class="footer-description">פתרונות נדל"ן והשכרה לטווח קצר המותאמים לצרכים שלכם. אנחנו כאן כדי להפוך את חווית השכירות שלכם לקלה ונוחה.</p>
+      </div>
+      
+      <div class="footer-column footer-links">
+        <h3 class="footer-title">קישורים מהירים</h3>
+        <ul class="footer-menu">
+          <li><a href="/properties">נכסים</a></li>
+          <li><a href="/property/example">פרטי נכס</a></li>
+          <li><a href="/contact">צור קשר</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-contact">
+        <h3 class="footer-title">יצירת קשר</h3>
+        <ul class="contact-list">
+          <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:[business_email]">[business_email]</a>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <a href="tel:[business_phone]">[business_phone]</a>
+          </li>
+          <li><a href="/"><i class="fas fa-map-marker-alt"></i>
+            <span>[business_address]</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-social">
+        <h3 class="footer-title">עקבו אחרינו</h3>
+        <div class="social-links">
+          <a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="/privacy">מדיניות פרטיות</a>
+        <span class="separator">|</span>
+        <a href="/terms">תנאים והגבלות</a><span class="separator">|</span>
+            <a href="/return-policy" aria-label="מדיניות החזרות">
+              מדיניות החזרות
+            </a>
+        <span class="separator">|</span>
+        <a href="/accessibility">הצהרת נגישות</a>
+      </div>
+      <div class="footer-copyright">
+        <p>© 2026 לייק הום. כל הזכויות שמורות.</p>
+      </div>
+      <div class="footer-attribution">
+        <a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+  <script src="/script.js"></script>
+
+    <div data-integration="accessibility:toolbar"></div>
+
+    <script id="zappy-mobile-submenu-script">
+    (function() {
+      function initMobileSubmenuToggles() {
+        if (window.innerWidth > 768) {
+          document.querySelectorAll('.mobile-submenu-toggle').forEach(function(btn) { btn.remove(); });
+          document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) { menu.classList.remove('mobile-expanded'); });
+          return;
+        }
+        var items = document.querySelectorAll('.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)');
+        items.forEach(function(li) {
+          if (li.querySelector('.mobile-submenu-toggle')) return;
+          var submenu = li.querySelector('.sub-menu');
+          var parentLink = li.querySelector(':scope > a');
+          if (!submenu || !parentLink) return;
+          var toggleBtn = document.createElement('button');
+          toggleBtn.className = 'mobile-submenu-toggle';
+          toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+          toggleBtn.setAttribute('type', 'button');
+          parentLink.insertAdjacentElement('afterend', toggleBtn);
+          toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+              if (menu !== submenu) { menu.classList.remove('mobile-expanded'); var t = menu.parentElement.querySelector('.mobile-submenu-toggle'); if(t) t.classList.remove('expanded'); }
+            });
+            submenu.classList.toggle('mobile-expanded');
+            toggleBtn.classList.toggle('expanded');
+          });
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initMobileSubmenuToggles); }
+      else { initMobileSubmenuToggles(); }
+      var resizeTimer; window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(initMobileSubmenuToggles, 250); });
+      // Re-initialize when mobile menu becomes visible (MutationObserver)
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes') {
+            var target = mutation.target;
+            if (target.classList && (target.classList.contains('active') || target.classList.contains('open'))) {
+              setTimeout(initMobileSubmenuToggles, 100);
+            }
+          }
+        });
+      });
+      setTimeout(function() {
+        document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu, nav').forEach(function(menu) {
+          observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+      }, 500);
+    })();
+    </script>
+</body></html>
